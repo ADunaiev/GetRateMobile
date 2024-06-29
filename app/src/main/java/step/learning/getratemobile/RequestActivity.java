@@ -62,7 +62,7 @@ public class RequestActivity extends AppCompatActivity {
 
         loadData();
         polSpinner = findViewById( R.id.request_sp_pol );
-        podSpinner = findViewById( R.id.request_sp_pod );
+        //podSpinner = findViewById( R.id.request_sp_pod );
         cargoSpinner = findViewById( R.id.request_sp_cargoes );
 
 
@@ -81,8 +81,6 @@ public class RequestActivity extends AppCompatActivity {
             }
         });
 
-        polSpinner.setAdapter( citiesAdapter );
-        podSpinner.setAdapter( citiesAdapter );
 
     }
 
