@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- START MENU -->
+    <color name="blue">#2195F2</color>
+    <color name="green">#26A599</color>
+    <color name="light_blue">#00ABC0</color>
+    <!-- REQUEST MENU -->
+    <color name="floating_label_color">#388E3C</color>
+    <color name="hint_text">#388E3C</color>
+    <color name="item_color">#512DA8</color>
+    <color name="item_list_color">#7C4DFF</color>
+    <color name="item_list_background_color">#808080</color>
+    <color name="item_list_hint_color">#FFFFFF</color>
+    <color name="selected_item_list_color">#FF5252</color>
+
+</resources>
