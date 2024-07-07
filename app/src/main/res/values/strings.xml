@@ -23,8 +23,21 @@
     <string name="request_menu_tv_from">From</string>
     <string name="request_menu_tv_to">To</string>
     <string name="request_menu_tv_cargo">Cargo</string>
+    <string name="request_menu_tv_gw">GW</string>
+    <string name="request_menu_tv_currency">$</string>
+    <string name="request_menu_tv_sort_by">Sort</string>
+    <string name="request_menu_tv_with_rates">with rates</string>
+    <string name="request_menu_tv_valid_rates">valid rates</string>
     <string name="request_menu_title">Request</string>
     <string name="request_city_error">Please choose city</string>
-    <string name="request_floatingLabelText">City is selected</string>
-    <string name="request_hint_Text">Please select city</string>
+    <string name="request_cargo_error">Please choose cargo</string>
+    <string name="request_city_floatingLabelText">City is selected</string>
+    <string name="request_cargo_floatingLabelText">Cargo is selected</string>
+    <string name="request_currency_floatingLabelText">Selected</string>
+    <string name="request_sort_by_floatingLabelText">Selected</string>
+    <string name="request_city_hint_Text">Please select city</string>
+    <string name="request_cargo_hint_Text">Please select cargo</string>
+    <string name="request_cargo_hint_Currency">Currency</string>
+    <string name="request_cargo_hint_sort_by">Sort by</string>
+    <string name="request_btn_send">Send</string>
 </resources>

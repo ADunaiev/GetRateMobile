@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             if( statusCode == 200 ) {
 
                 Intent intent = new Intent( this, RequestActivity.class);
+                //intent.putExtra("user_name", name )
                 startActivity( intent );
 
                 runOnUiThread( () -> {

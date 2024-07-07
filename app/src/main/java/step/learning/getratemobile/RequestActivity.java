@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -39,9 +40,14 @@ public class RequestActivity extends AppCompatActivity {
     private SmartMaterialSpinner<String> polSpinner;
     private SmartMaterialSpinner<String> podSpinner;
     private SmartMaterialSpinner<String> cargoSpinner;
+    private SmartMaterialSpinner<String> currencySpinner;
+    private SmartMaterialSpinner<String> sortBySpinner;
     private List<String> cities = new ArrayList<>();
     private List<String> cargoes = new ArrayList<>();
-    private List<MyCurrency> currencies = new ArrayList<>();
+    private List<String> currencies = new ArrayList<>();
+    private List<String> sortBy = Arrays.asList(
+        "Price", "Time"
+    );
     private static final String REQUEST_GET = "https://dunaiev.com/requests";
     private final byte[] buffer = new byte[8096];
     ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -57,18 +63,41 @@ public class RequestActivity extends AppCompatActivity {
             return insets;
         });
 
-        cities.add( "Please choose city");
-        cargoes.add( "Please choose cargo");
-
         loadData();
         polSpinner = findViewById( R.id.request_sp_pol );
-        //podSpinner = findViewById( R.id.request_sp_pod );
+        podSpinner = findViewById( R.id.request_sp_pod );
         cargoSpinner = findViewById( R.id.request_sp_cargoes );
-
+        currencySpinner = findViewById( R.id.request_sp_currency );
+        sortBySpinner = findViewById( R.id.request_sp_sort );
 
         polSpinner.setItem( cities );
         podSpinner.setItem( cities );
         cargoSpinner.setItem( cargoes );
+        currencySpinner.setItem( currencies );
+        sortBySpinner.setItem( sortBy );
+
+        polSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        podSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         cargoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -80,8 +109,28 @@ public class RequestActivity extends AppCompatActivity {
 
             }
         });
+        currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        sortBySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void loadData() {
@@ -89,8 +138,7 @@ public class RequestActivity extends AppCompatActivity {
 
         CompletableFuture
                 .supplyAsync( this::getDataFromDb, executorService )
-                .thenApplyAsync( this::processRequestResponse )
-                .thenAcceptAsync( this::displayGetData );
+                .thenApplyAsync( this::processRequestResponse );
     }
     private String getDataFromDb() {
         try( InputStream dataStream = new URL( REQUEST_GET ).openStream() ) {
@@ -125,7 +173,7 @@ public class RequestActivity extends AppCompatActivity {
             }
 
             for( MyCurrency currency: data.getCurrencies() ) {
-                this.currencies.add( currency );
+                this.currencies.add( currency.getCc() );
                 if( !isCurrenciesLoaded) isCurrenciesLoaded = true;
             }
             isDataLoadedSuccessfully = isCitiesLoaded && isCargoesLoaded && isCurrenciesLoaded;
@@ -137,11 +185,7 @@ public class RequestActivity extends AppCompatActivity {
         }
         return false;
     }
-    private void displayGetData( boolean isDataLoadedSuccessfully ) {
-        if( !isDataLoadedSuccessfully ) return;
 
-
-    }
     private String readString(InputStream stream) throws IOException {
         ByteArrayOutputStream byteBuilder = new ByteArrayOutputStream();
         int len;

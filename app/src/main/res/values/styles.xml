@@ -42,4 +42,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">5%</item>
     </style>
+    <style name="myCheckBox" parent="Theme.MaterialComponents">
+        <item name="colorOnSurface">@color/blue</item>
+        <item name="colorSecondary">@color/green</item>
+    </style>
 </resources>
